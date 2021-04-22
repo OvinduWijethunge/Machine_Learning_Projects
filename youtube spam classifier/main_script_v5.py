@@ -32,7 +32,7 @@ worksheet2 = wb2.active
 number_of_round = (worksheet1.max_row + 1)
 fields_list = []
 for x in range(2,number_of_round):
-    print("round????????????????????????????????????????????????????????????????????????????????????????? ")
+   # print("round????????????????????????????????????????????????????????????????????????????????????????? ")
     vid = worksheet1.cell(row=x, column=2).value
     main_list = []
     post_date = ""
@@ -79,7 +79,7 @@ for x in range(2,number_of_round):
         
         text = re.sub(r'[#$%&()*+-./:;<=>?\s]', '',text)
         tokens = word_tokenize(text)
-        print(tokens) # ['මචං', 'මැසේජ්', 'වගේ']
+       # print(tokens) # ['මචං', 'මැසේජ්', 'වගේ']
         list_comment = []
         for token in tokens:# take a one word at  a time
             n = len(token)
@@ -87,10 +87,10 @@ for x in range(2,number_of_round):
             for i in range(0,(n-1)):
                 bi = token[i:i+2]
                 list_word.append(bi)
-            print("word bi grams list ",list_word)    
+            #print("word bi grams list ",list_word)    
             list_comment.extend(list_word)
     
-        print("comment bi grams ",list_comment)
+        #print("comment bi grams ",list_comment)
         return list_comment
     
     # claculate peiods sequence
@@ -151,24 +151,26 @@ for x in range(2,number_of_round):
         link_mob_mail_word_length = link_mob_mail_length_blckword(words_processed_text[i])
         
         classifier_val = classifier[i-1]
-        print(dataset[i])
-        print("cos_simillerity_content_comment ",cos_simillerity_content_comment)
-        print("cos_simillerity_comment_comment  ",cos_simillerity_comment_comment)
-        print("word_count  ",link_mob_mail_word_length[1])
-        print("duplicate_word_ratio  ",duplicate_word_ratio)
-        print("no_of_sentences  ",no_of_sentences)
-        print("length_of_comment ",link_mob_mail_word_length[0])
-        print("num_of_punctuations ",num_of_punctuations)
-        print(" is period ",is_period_sequence)
-        print("stop_word_ratio ",stop_word_ratio)
-        print("post_coment_gap ",post_coment_gap)
-        print("black_word_count ",link_mob_mail_word_length[-1])
-        print("is_link ",link_mob_mail_word_length[2])
-        print("is_youtube_link ",link_mob_mail_word_length[3])
-        print("is_number ",link_mob_mail_word_length[4])
-        print("is_mail ",link_mob_mail_word_length[5])
-        print("comment_duplication  ",comment_duplication)
-
+# =============================================================================
+#         print(dataset[i])
+#         print("cos_simillerity_content_comment ",cos_simillerity_content_comment)
+#         print("cos_simillerity_comment_comment  ",cos_simillerity_comment_comment)
+#         print("word_count  ",link_mob_mail_word_length[1])
+#         print("duplicate_word_ratio  ",duplicate_word_ratio)
+#         print("no_of_sentences  ",no_of_sentences)
+#         print("length_of_comment ",link_mob_mail_word_length[0])
+#         print("num_of_punctuations ",num_of_punctuations)
+#         print(" is period ",is_period_sequence)
+#         print("stop_word_ratio ",stop_word_ratio)
+#         print("post_coment_gap ",post_coment_gap)
+#         print("black_word_count ",link_mob_mail_word_length[-1])
+#         print("is_link ",link_mob_mail_word_length[2])
+#         print("is_youtube_link ",link_mob_mail_word_length[3])
+#         print("is_number ",link_mob_mail_word_length[4])
+#         print("is_mail ",link_mob_mail_word_length[5])
+#         print("comment_duplication  ",comment_duplication)
+# 
+# =============================================================================
        
         stringList = makes_csv(li_id[i-1], cos_simillerity_content_comment,cos_simillerity_comment_comment,link_mob_mail_word_length[1],duplicate_word_ratio,no_of_sentences,link_mob_mail_word_length[0],num_of_punctuations,is_period_sequence,stop_word_ratio,post_coment_gap,link_mob_mail_word_length[-1],link_mob_mail_word_length[2],link_mob_mail_word_length[3],link_mob_mail_word_length[4],link_mob_mail_word_length[5],comment_duplication,classifier_val)
         fields_list.append(stringList)
