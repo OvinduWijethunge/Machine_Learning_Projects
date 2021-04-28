@@ -363,7 +363,8 @@ if __name__ == '__main__':
     date_title = get_video_date(videoId) 
     data_list = get_video_comments(service, part= 'id,snippet', videoId=videoId, textFormat='plainText')
     print(data_list)
-    video_content = get_video_content(videoId) # nzJGXf9Pz-M    DdozTMqfMQs  \\\\ 0FXKASB1Bd0 y20atnrVbIo
+    video_content = get_video_content(videoId)  # 0FXKASB1Bd0 _VLjevnS8lw  loO6ws2X50Y
+                                                   # #  BW38guk_fQQ
     write_to_excel(data_list)
     content_list = [[video_content,videoId]]
     write_to_excel_content(content_list)
