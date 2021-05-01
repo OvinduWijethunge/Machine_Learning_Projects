@@ -72,8 +72,8 @@ for x in range(2,number_of_round):
         obj2 = datetime.strptime(val,'%Y-%m-%dT%H:%M:%SZ')
         time_delta = (obj2-obj1)
         total_seconds = time_delta.total_seconds()
-        minutes = total_seconds/60
-        return minutes
+        #minutes = total_seconds/60
+        return total_seconds
     
     def generate_ngrams(text):
         
@@ -104,9 +104,6 @@ for x in range(2,number_of_round):
             if x=='.'and y=='.':
                 return 1
             #print(i)
-        
-        
-       
         return 0    
     
     
@@ -125,18 +122,32 @@ for x in range(2,number_of_round):
         words_processed_text.append(word_tokenize(str(remove_punctuation(text))))
         
     vectors_list = vectorize(bi_gram_processed_text)
-
+    
 #---------------------------------------------------------------------------------------
 
-    center_vector = np.zeros((len(vectors_list[2])))
+    #center_vector = np.zeros((len(vectors_list[2]))) # initialize for comments center vector
+    dynamic_center_vector = []
     for numb in range(1,len(vectors_list)):
-        center_vector = center_vector + vectors_list[numb]
-    new_center_vector = center_vector/(len(vectors_list)-1)        
+        
+        center_vector = np.zeros((len(vectors_list[0]))) # initialize for comments center vector
+        count = 0
+        for i in vectors_list[1:]:
+            count +=1
+            if count == numb:
+                continue
+            else:
+                
+                center_vector = np.add(center_vector,i)
+            
+        row_center_vector = center_vector/(len(vectors_list)-2)        
+        dynamic_center_vector.append(row_center_vector)
+    
+    
     content_vector = vectors_list[0]
     
     for i in range(1, N):
         cos_simillerity_content_comment = calculate_content_comment_similerity(content_vector,vectors_list[i].tolist())
-        cos_simillerity_comment_comment = calculate_content_comment_similerity(new_center_vector,vectors_list[i].tolist())    
+        cos_simillerity_comment_comment = calculate_content_comment_similerity(dynamic_center_vector[i-1],vectors_list[i].tolist())    
         #word_count =len(words_processed_text[i]) 
         duplicate_word_ratio = duplicate_words(words_processed_text[i])
         no_of_sentences = no_sentences(dataset[i])
@@ -151,28 +162,30 @@ for x in range(2,number_of_round):
         link_mob_mail_word_length = link_mob_mail_length_blckword(words_processed_text[i])
         
         classifier_val = classifier[i-1]
-# =============================================================================
-#         print(dataset[i])
-#         print("cos_simillerity_content_comment ",cos_simillerity_content_comment)
-#         print("cos_simillerity_comment_comment  ",cos_simillerity_comment_comment)
-#         print("word_count  ",link_mob_mail_word_length[1])
-#         print("duplicate_word_ratio  ",duplicate_word_ratio)
-#         print("no_of_sentences  ",no_of_sentences)
-#         print("length_of_comment ",link_mob_mail_word_length[0])
-#         print("num_of_punctuations ",num_of_punctuations)
-#         print(" is period ",is_period_sequence)
-#         print("stop_word_ratio ",stop_word_ratio)
-#         print("post_coment_gap ",post_coment_gap)
-#         print("black_word_count ",link_mob_mail_word_length[-1])
-#         print("is_link ",link_mob_mail_word_length[2])
-#         print("is_youtube_link ",link_mob_mail_word_length[3])
-#         print("is_number ",link_mob_mail_word_length[4])
-#         print("is_mail ",link_mob_mail_word_length[5])
-#         print("comment_duplication  ",comment_duplication)
-# 
-# =============================================================================
+        
+        
+        print(' ')
+        print(dataset[i])
+        print("cos_simillerity_content_comment ",cos_simillerity_content_comment)
+        print("cos_simillerity_comment_comment  ",cos_simillerity_comment_comment)
+        print("word_count  ",link_mob_mail_word_length[1])
+        print("duplicate_word_ratio  ",duplicate_word_ratio)
+        print("no_of_sentences  ",no_of_sentences)
+        print("length_of_comment ",link_mob_mail_word_length[0])
+        print("num_of_punctuations ",num_of_punctuations)
+        print("is period sequence ",is_period_sequence)
+        print("stop_word_ratio ",stop_word_ratio)
+        print("post_coment_gap ",post_coment_gap)
+        print("black_word_ratio ",link_mob_mail_word_length[-1])
+        print("is_link ",link_mob_mail_word_length[2])
+        print("is_youtube_link ",link_mob_mail_word_length[3])
+        print("is_number ",link_mob_mail_word_length[4])
+        #print("is_mail ",link_mob_mail_word_length[5])
+        print("comment_duplication  ",comment_duplication)
+
+
        
-        stringList = makes_csv(li_id[i-1], cos_simillerity_content_comment,cos_simillerity_comment_comment,link_mob_mail_word_length[1],duplicate_word_ratio,no_of_sentences,link_mob_mail_word_length[0],num_of_punctuations,is_period_sequence,stop_word_ratio,post_coment_gap,link_mob_mail_word_length[-1],link_mob_mail_word_length[2],link_mob_mail_word_length[3],link_mob_mail_word_length[4],link_mob_mail_word_length[5],comment_duplication,classifier_val)
+        stringList = makes_csv(li_id[i-1], cos_simillerity_content_comment,cos_simillerity_comment_comment,link_mob_mail_word_length[1],duplicate_word_ratio,no_of_sentences,link_mob_mail_word_length[0],num_of_punctuations,is_period_sequence,stop_word_ratio,post_coment_gap,link_mob_mail_word_length[-1],link_mob_mail_word_length[2],link_mob_mail_word_length[3],link_mob_mail_word_length[4],comment_duplication,classifier_val)
         fields_list.append(stringList)
         
         

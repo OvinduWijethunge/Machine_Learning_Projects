@@ -10,7 +10,7 @@ from func_geting_features import check_black_words_list
 
 #list_val = []
 def link_mob_mail_length_blckword(text):
-    print('test is ',text)
+   # print('test is ',text)
     st = ' '.join(text)
   
     list_val = []
@@ -34,7 +34,7 @@ def link_mob_mail_length_blckword(text):
                 
                 isYoutubeLink = 1
                 break
-    print("link is ",isLink,isYoutubeLink),
+    #print("link is ",isLink,isYoutubeLink),
     list_val.append(isLink)
     list_val.append(isYoutubeLink)
 
@@ -50,14 +50,16 @@ def link_mob_mail_length_blckword(text):
     #print("phone number is ",isTnumber)  
     
     
-    isMail = 0
-    x = re.findall(r'[\w\.-]+@[\w\.-]+(\.[\w]+)+', st)
-    #print(x)
-
-    if len(x)!= 0:
-        
-        isMail = 1
-    list_val.append(isMail)    
+# =============================================================================
+#     isMail = 0
+#     x = re.findall(r'[\w\.-]+@[\w\.-]+(\.[\w]+)+', st)
+#     #print(x)
+# 
+#     if len(x)!= 0:
+#         
+#         isMail = 1
+#     list_val.append(isMail)    
+# =============================================================================
         
    # print("mail is ",isMail) 
 

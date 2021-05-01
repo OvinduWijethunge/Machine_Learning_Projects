@@ -35,7 +35,7 @@ def find_duplicate_comments(main_list, val):
                        row_comment = rowd[3]
                         
                        dataset = [comment , row_comment]
-                       print("dta set is",dataset)
+                       #print("dta set is",dataset)
                        Ne = len(dataset) 
                         
                        processed_text = []
