@@ -90,18 +90,18 @@ def get_authenticated_service():
 
 
 def write_to_excel_content(content_list):
-    if os.path.exists('./contents.xlsx'):
-        wb = openpyxl.load_workbook('contents.xlsx')
+    if os.path.exists('./testcontents.xlsx'):
+        wb = openpyxl.load_workbook('testcontents.xlsx')
         worksheet = wb.active
         for listx in content_list:
             
             worksheet.append(listx)
             
-        wb.save('contents.xlsx')
+        wb.save('testcontents.xlsx')
         wb.close()
     else:
         wb = openpyxl.Workbook()
-        dest_filename = 'contents.xlsx'
+        dest_filename = 'testcontents.xlsx'
         worksheet = wb.active
          
         worksheet['A1']= 'content' 
@@ -124,18 +124,18 @@ def write_to_excel_content(content_list):
 
 
 def write_to_excel(d_list):
-    if os.path.exists('./comments.xlsx'):
-        wb = openpyxl.load_workbook('comments.xlsx')
+    if os.path.exists('./testcomments.xlsx'):
+        wb = openpyxl.load_workbook('testcomments.xlsx')
         worksheet = wb.active
         for listx in d_list:
             
             worksheet.append(listx)
             
-        wb.save('comments.xlsx')
+        wb.save('testcomments.xlsx')
         wb.close()
     else:
         wb = openpyxl.Workbook()
-        dest_filename = 'comments.xlsx'
+        dest_filename = 'testcomments.xlsx'
         worksheet = wb.active
          
         worksheet['A1']= 'vid' 
@@ -364,7 +364,7 @@ if __name__ == '__main__':
     data_list = get_video_comments(service, part= 'id,snippet', videoId=videoId, textFormat='plainText')
     print(data_list)
     video_content = get_video_content(videoId)  # 0FXKASB1Bd0 _VLjevnS8lw  loO6ws2X50Y
-                                                   # #  BW38guk_fQQ
+                                                   # #  BW38guk_fQQ  Rjb9sLL0LZI lUukWG4Fqow
     write_to_excel(data_list)
     content_list = [[video_content,videoId]]
     write_to_excel_content(content_list)
