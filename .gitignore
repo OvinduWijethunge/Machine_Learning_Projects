@@ -10,7 +10,7 @@ __pycache__/
 
 
 # Distribution / packaging
-client_secret
+client_secret.json
 token.pickle
 .Python
 build/
