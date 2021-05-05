@@ -48,4 +48,6 @@
 
 • Jupyter notebook <br>
 • Spyder <br>
+• Google colab <br>
+
 
