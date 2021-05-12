@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="https://i.pcmag.com/imagery/articles/03TusrjgeJmocMs3y4zcxE0-7..1569484420.jpg" width="800" height="320"/>
+  <img src="https://i.pcmag.com/imagery/articles/03TusrjgeJmocMs3y4zcxE0-7..1569484420.jpg" width="800" height="321"/>
 </p><br>
 
  <p align="center">
