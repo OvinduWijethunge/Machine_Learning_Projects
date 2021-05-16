@@ -5,7 +5,7 @@ Created on Fri Nov 20 10:28:43 2020
 @author: ovindu wijethunge
 """
 from nltk.tokenize import word_tokenize
-from func_geting_features import no_sentences, com_length,no_punctuations, count_stop_word,check_black_words_list,duplicate_words, find_mail_site_pnumber,calculate_content_comment_similerity
+from func_geting_features import no_sentences, com_length,no_punctuations,check_black_words_list,duplicate_words, find_mail_site_pnumber,calculate_content_comment_similerity
 from func_vector_create import vectorize
 from func_preprocessing import preprocess,remove_punctuation
 from func_find_duplicate_comments import find_duplicate_comments
@@ -154,7 +154,7 @@ for x in range(2,number_of_round):
         #length_of_comment = com_length(dataset[i])
         num_of_punctuations = no_punctuations(dataset[i])
         is_period_sequence = calc(dataset[i])
-        stop_word_ratio = count_stop_word(words_processed_text[i])
+        #stop_word_ratio = count_stop_word(words_processed_text[i])
         post_coment_gap = calculate_time_gap(comments_date[i-1])
         #is_black_word = check_black_words_list(words_processed_text[i])
         #link_mail_pnumber = find_mail_site_pnumber(dataset[i])
@@ -174,7 +174,7 @@ for x in range(2,number_of_round):
         print("length_of_comment ",link_mob_mail_word_length[0])
         print("num_of_punctuations ",num_of_punctuations)
         print("is period sequence ",is_period_sequence)
-        print("stop_word_ratio ",stop_word_ratio)
+        #print("stop_word_ratio ",stop_word_ratio)
         print("post_coment_gap ",post_coment_gap)
         print("black_word_ratio ",link_mob_mail_word_length[-1])
         print("is_link ",link_mob_mail_word_length[2])
@@ -185,7 +185,7 @@ for x in range(2,number_of_round):
 
 
        
-        stringList = makes_csv(li_id[i-1], cos_simillerity_content_comment,cos_simillerity_comment_comment,link_mob_mail_word_length[1],duplicate_word_ratio,no_of_sentences,link_mob_mail_word_length[0],num_of_punctuations,is_period_sequence,stop_word_ratio,post_coment_gap,link_mob_mail_word_length[-1],link_mob_mail_word_length[2],link_mob_mail_word_length[3],link_mob_mail_word_length[4],comment_duplication,classifier_val)
+        stringList = makes_csv(li_id[i-1], cos_simillerity_content_comment,cos_simillerity_comment_comment,link_mob_mail_word_length[1],duplicate_word_ratio,no_of_sentences,link_mob_mail_word_length[0],num_of_punctuations,is_period_sequence,post_coment_gap,link_mob_mail_word_length[-1],link_mob_mail_word_length[2],link_mob_mail_word_length[3],link_mob_mail_word_length[4],comment_duplication,classifier_val)
         fields_list.append(stringList)
         
         
