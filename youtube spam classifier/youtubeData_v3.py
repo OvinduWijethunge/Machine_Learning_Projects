@@ -41,6 +41,7 @@ import os, shutil
 
 
 
+
 CLIENT_SECRETS_FILE = "client_secret.json" # for more information   https://python.gotrained.com/youtube-api-extracting-comments/
 SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
 API_SERVICE_NAME = 'youtube'
@@ -48,7 +49,11 @@ API_VERSION = 'v3'
 
 list_date_title = []
 def get_video_date(vid):
-    api_key = 'AIzaSyCUUaAbUbpJqD-BE74quAoVFDp-ggd3SLo'
+    if len(list_date_title)!=0:
+        
+        list_date_title.clear()
+        
+    api_key = 'AIzaSyAMaj2OSJVU_xVC0LyLvmATMDdRgkScIwg'
     youtube = build('youtube', 'v3', developerKey=api_key)
     request = youtube.videos().list(
 
@@ -56,7 +61,7 @@ def get_video_date(vid):
     id = vid
     )
     response = request.execute()
-    video_published_date = "2000-10-25T04:31:22Z"
+    video_published_date = "date"
     video_title = "helloo"
     
     for item in response['items']:
@@ -64,7 +69,7 @@ def get_video_date(vid):
         list_date_title.append(video_published_date)
         video_title = item['snippet']['title']
         list_date_title.append(video_title)
-    #return list_date_title
+    return list_date_title
 
 def get_authenticated_service():
     credentials = None
@@ -88,20 +93,19 @@ def get_authenticated_service():
     return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
 
 
-
 def write_to_excel_content(content_list):
-    if os.path.exists('./testcontents.xlsx'):
-        wb = openpyxl.load_workbook('testcontents.xlsx')
+    if os.path.exists('./testcontents1.xlsx'):
+        wb = openpyxl.load_workbook('testcontents1.xlsx')
         worksheet = wb.active
         for listx in content_list:
             
             worksheet.append(listx)
             
-        wb.save('testcontents.xlsx')
+        wb.save('testcontents1.xlsx')
         wb.close()
     else:
         wb = openpyxl.Workbook()
-        dest_filename = 'testcontents.xlsx'
+        dest_filename = 'testcontents1.xlsx'
         worksheet = wb.active
          
         worksheet['A1']= 'content' 
@@ -124,18 +128,18 @@ def write_to_excel_content(content_list):
 
 
 def write_to_excel(d_list):
-    if os.path.exists('./testcomments.xlsx'):
-        wb = openpyxl.load_workbook('testcomments.xlsx')
+    if os.path.exists('./testcomments1.xlsx'):
+        wb = openpyxl.load_workbook('testcomments1.xlsx')
         worksheet = wb.active
         for listx in d_list:
             
             worksheet.append(listx)
             
-        wb.save('testcomments.xlsx')
+        wb.save('testcomments1.xlsx')
         wb.close()
     else:
         wb = openpyxl.Workbook()
-        dest_filename = 'testcomments.xlsx'
+        dest_filename = 'testcomments1.xlsx'
         worksheet = wb.active
          
         worksheet['A1']= 'vid' 
@@ -227,13 +231,16 @@ def convert_audio_to_text(filepath, chunksize=30000):
 
 
 
+ 
 def get_video_content(videoId):
     
-    url = 'https://www.youtube.com/watch?v='+videoId
+   
+    
+    #url = 'https://www.youtube.com/watch?v='+videoId
     output = "mp3"
     print("Converting...")
 
-    mp4 = YouTube(url).streams.get_highest_resolution().download()
+    mp4 = YouTube('https://www.youtube.com/watch?v=vHa7TJnIq_8').streams.get_highest_resolution().download()
     mp3 = mp4.split(".mp4", 1)[0] + f".{output}"
 
     video_clip = VideoFileClip(mp4)
@@ -364,11 +371,7 @@ if __name__ == '__main__':
     data_list = get_video_comments(service, part= 'id,snippet', videoId=videoId, textFormat='plainText')
     print(data_list)
     video_content = get_video_content(videoId)  # 0FXKASB1Bd0 _VLjevnS8lw  loO6ws2X50Y
-                                                   # #  BW38guk_fQQ  Rjb9sLL0LZI lUukWG4Fqow
+                                                    # #  wexrfbaz-z4
     write_to_excel(data_list)
     content_list = [[video_content,videoId]]
     write_to_excel_content(content_list)
-  
-#print(len(data_list))
-
-#print("my comments ",comments)
