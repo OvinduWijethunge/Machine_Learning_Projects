@@ -6,7 +6,10 @@ __pycache__/
 
 # files
 api_key.txt
+<<<<<<< HEAD
 taxi.csv
+=======
+>>>>>>> f826f283e180f0d07a4c8f84106e0e7875aa5baa
 # C extensions
 *.so
 
