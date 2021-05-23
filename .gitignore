@@ -4,7 +4,8 @@ __pycache__/
 *$py.class
 .ipynb_checkpoints
 
-
+# files
+api_key.txt
 # C extensions
 *.so
 
