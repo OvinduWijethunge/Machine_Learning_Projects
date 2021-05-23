@@ -4,7 +4,9 @@ __pycache__/
 *$py.class
 .ipynb_checkpoints
 
-
+# files
+api_key.txt
+taxi.csv
 # C extensions
 *.so
 
