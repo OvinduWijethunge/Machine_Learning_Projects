@@ -10,7 +10,10 @@ taxi.csv
 BX-Books.csv
 BX-Users.csv
 BX-Book-Ratings.csv
-
+links.csv
+movies.csv
+ratings.csv
+tags.csv
 # C extensions
 *.so
 
