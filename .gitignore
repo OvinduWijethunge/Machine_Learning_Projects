@@ -6,6 +6,11 @@ __pycache__/
 
 # files
 api_key.txt
+taxi.csv
+BX-Books.csv
+BX-Users.csv
+BX-Book-Ratings.csv
+
 # C extensions
 *.so
 
